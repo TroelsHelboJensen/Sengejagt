@@ -17,7 +17,7 @@ backend:
 #   1) sæt local_backend: true
 #   2) kør i et separat terminalvindue:  npx decap-server
 #   3) kør appen:  npm run dev  →  åbn http://localhost:5173/admin
-local_backend: true
+#local_backend: true
 
 # Media bruges ikke (ingen billed-upload), men Decap kræver felterne.
 media_folder: public/uploads
