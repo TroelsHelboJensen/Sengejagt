@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import AIAssistant from './AIAssistant.jsx'
+import PriceHistory from './PriceHistory.jsx'
+import { seriesFor } from '../data/history.js'
 
 // Ikon-knapperne: PriceRunner, Prisjagt og forhandlerens hjemmeside.
 const LinkButtons = ({ bed }) => (
@@ -47,6 +49,8 @@ export default function BedCard({ bed }) {
       </header>
 
       <LinkButtons bed={bed} />
+
+      <PriceHistory series={seriesFor(bed.id)} />
 
       <button
         className="card__toggle"

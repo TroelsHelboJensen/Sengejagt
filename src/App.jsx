@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { beds, requirements } from './data/beds.js'
+import { latestPrices } from './data/history.js'
 import BedCard from './components/BedCard.jsx'
 
 const ALL_BRANDS = 'Alle mærker'
@@ -73,15 +74,18 @@ export default function App() {
     [],
   )
 
-  // Flet hentede priser ind i bed-data.
+  // Vist pris: live-hentet (hvis knappen bruges) → ellers seneste fra
+  // prishistorikken → ellers den statiske værdi.
+  const historyPrices = useMemo(() => latestPrices(), [])
+
   const merged = useMemo(
     () =>
       beds.map((b) => ({
         ...b,
-        price: priceData[b.id]?.price ?? b.price,
+        price: priceData[b.id]?.price ?? historyPrices[b.id] ?? b.price,
         priceSource: priceData[b.id]?.source ?? null,
       })),
-    [priceData],
+    [priceData, historyPrices],
   )
 
   const visible = useMemo(() => {

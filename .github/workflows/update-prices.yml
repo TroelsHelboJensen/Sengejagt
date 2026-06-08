@@ -1,0 +1,36 @@
+name: Opdater pris-historik
+
+# Kan startes manuelt fra Actions-fanen.
+#
+# Det ugentlige skema er bevidst slået fra indtil pris-udtrækket er
+# verificeret mod rigtige produkt-sider (ellers gemmes forkerte priser i
+# historikken). Fjern kommentaren på `schedule` når `productUrl` er udfyldt
+# på sengene i src/data/beds.js og priserne ser rigtige ud.
+on:
+  # schedule:
+  #   - cron: '0 6 * * 1'   # ugentligt, mandag 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Hent priser og gem snapshot
+        run: node scripts/snapshot-prices.mjs
+
+      - name: Commit snapshot hvis ændret
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/price-history.json
+          git diff --staged --quiet || git commit -m "chore: pris-snapshot $(date +%F)"
+          git push

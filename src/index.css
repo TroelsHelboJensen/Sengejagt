@@ -176,6 +176,52 @@ body {
   font-size: 1.1rem;
 }
 
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.history__empty {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.history__chart {
+  width: 100%;
+  height: 48px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.history__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.history__stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.history__stats dt {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.history__stats dd {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
 .card__toggle {
   background: transparent;
   border: 1px solid var(--border);
