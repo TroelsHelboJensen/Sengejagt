@@ -49,11 +49,6 @@ export const beds = [
     links: [
       priceRunner('Temprakon LYA'),
       prisjagt('Temprakon LYA'),
-      link(
-        'Jysk',
-        '🏬',
-        'https://jysk.dk/sovevaerelse/kontinentalsenge/kontinentalseng-180x210cm-temprakon-lya-graa-42',
-      ),
     ],
     reviews: {
       rating: null,
@@ -80,11 +75,6 @@ export const beds = [
     links: [
       priceRunner('Dunlopillo C300'),
       prisjagt('Dunlopillo C300'),
-      link(
-        'Jysk',
-        '🏬',
-        'https://jysk.dk/sovevaerelse/kontinentalsenge/kontinentalseng-180x210-dunlopillo-c300-graa-32',
-      ),
     ],
     reviews: {
       rating: null,
