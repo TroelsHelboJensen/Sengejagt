@@ -45,6 +45,8 @@ export default function BedCard({ bed }) {
         </span>
       </header>
 
+      {bed.spring && <p className="card__spec">{bed.spring}</p>}
+
       <LinkButtons links={bed.links} />
 
       <PriceHistory series={seriesFor(bed.id)} />
