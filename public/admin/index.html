@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Sengejagt · admin</title>
+    <!-- Absolut sti til config, så den hentes korrekt uanset om URL'en er
+         /admin eller /admin/ (relativ sti fra /admin ville ramme /config.yml). -->
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <!-- Decap CMS — færdig admin-UI der committer til src/data/beds.json i repoet. -->
+    <script src="https://unpkg.com/decap-cms@^3.5.0/dist/decap-cms.js"></script>
+  </body>
+</html>
