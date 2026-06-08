@@ -1,0 +1,43 @@
+{
+  "id": "prestige",
+  "order": 3,
+  "model": "Prestige (J5)",
+  "brand": "Jensen",
+  "retailer": "time2sleep / seng.dk",
+  "spring": "Jensen Pocket (3 separate pocketsystemer), blød skulderzone",
+  "salePrice": 38059,
+  "note": "35% hos time2sleep",
+  "priceHistory": [
+    { "date": "2026-06-08", "price": 58552 }
+  ],
+  "priceQuery": "Jensen Prestige",
+  "links": [
+    {
+      "label": "time2sleep",
+      "icon": "🛌",
+      "url": "https://time2sleep.dk/collections/jensen"
+    },
+    {
+      "label": "seng.dk",
+      "icon": "🛏️",
+      "url": "https://www.seng.dk/product/xn_01_020_020_003_180x210_02/jensen-j5-kontinentalseng-180x210-cm-med-3-delt-betraek"
+    },
+    {
+      "label": "Jensen",
+      "icon": "⭐",
+      "url": "https://jensen-beds.com/dk/senge/prestige-sc21/kontinental/"
+    }
+  ],
+  "reviews": {
+    "rating": 4.9,
+    "count": 5500,
+    "verdict": "Fremragende: Jensen Beds 4,9/5 på Trustpilot. 25 års garanti mod fjeder-/rammebrud, Svanemærket, 3 fasthedsgrader (medium/fast/ekstra fast).",
+    "sources": [
+      {
+        "label": "Trustpilot",
+        "icon": "⭐",
+        "url": "https://www.trustpilot.com/review/www.jensen-beds.com"
+      }
+    ]
+  }
+}

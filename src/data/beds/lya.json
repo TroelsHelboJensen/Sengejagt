@@ -1,0 +1,27 @@
+{
+  "id": "lya",
+  "order": 1,
+  "model": "LYA",
+  "brand": "Temprakon",
+  "retailer": "Jysk",
+  "spring": "Pocketfjedre 225/m² + 10 cm latex-top, Cooltex Breeze (køle-betræk)",
+  "salePrice": 14999,
+  "note": "ca. — Jysk-udsalg svinger",
+  "priceHistory": [
+    { "date": "2026-06-08", "price": 29999 }
+  ],
+  "priceQuery": "Temprakon LYA",
+  "links": [],
+  "reviews": {
+    "rating": null,
+    "count": null,
+    "verdict": "Blandet: ros for køle-komfort, men gentagne klager over samlekvalitet og holdbarhed.",
+    "sources": [
+      {
+        "label": "Trustpilot",
+        "icon": "⭐",
+        "url": "https://dk.trustpilot.com/review/www.temprakon.com"
+      }
+    ]
+  }
+}

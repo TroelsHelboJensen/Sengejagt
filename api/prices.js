@@ -2,7 +2,7 @@
 // Live-kald af pris-hentningen. Selve logikken bor i lib/prices.js, så den
 // deles med GitHub Action'en der gemmer historik (scripts/snapshot-prices.mjs).
 
-import { beds } from '../src/data/beds.js'
+import { beds } from '../src/data/beds.node.mjs'
 import { resolveAllPrices } from '../lib/prices.js'
 
 export default async function handler(req, res) {
