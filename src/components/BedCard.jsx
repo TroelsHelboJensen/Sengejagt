@@ -29,6 +29,12 @@ const formatPrice = (price) =>
         maximumFractionDigits: 0,
       }).format(price)
 
+// Rabat i % ud fra normalpris (bed.price) og tilbudspris (bed.salePrice).
+const discount = (bed) =>
+  bed.price != null && bed.salePrice != null && bed.salePrice < bed.price
+    ? Math.round((1 - bed.salePrice / bed.price) * 100)
+    : null
+
 // Anmeldelser: rating-chip (hvis kendt), kort vurdering og kilde-links.
 const Reviews = ({ reviews }) => (
   <div className="card__reviews">
@@ -60,7 +66,21 @@ export default function BedCard({ bed }) {
           <p className="card__brand">{bed.brand}</p>
         </div>
         <span className="card__price">
-          {formatPrice(bed.price)}
+          {bed.salePrice != null ? (
+            <>
+              <span className="card__sale">{formatPrice(bed.salePrice)}</span>
+              {bed.price != null && (
+                <span className="card__list">
+                  <s>{formatPrice(bed.price)}</s>
+                  {discount(bed) != null && (
+                    <em className="card__discount">−{discount(bed)}%</em>
+                  )}
+                </span>
+              )}
+            </>
+          ) : (
+            formatPrice(bed.price)
+          )}
           {bed.note && <small className="card__source">{bed.note}</small>}
         </span>
       </header>

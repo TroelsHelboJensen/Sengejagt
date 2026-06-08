@@ -109,10 +109,32 @@ body {
 }
 
 .card__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   font-weight: 600;
   color: var(--accent);
   white-space: nowrap;
   font-size: 0.95rem;
+}
+
+.card__sale {
+  font-size: 1.05rem;
+}
+
+.card__list {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.card__discount {
+  font-style: normal;
+  font-weight: 600;
+  color: #4ade80;
 }
 
 .card__spec {

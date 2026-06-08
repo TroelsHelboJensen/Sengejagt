@@ -31,15 +31,19 @@ export default function App() {
       return filtered
     }
 
+    // Sortér efter den pris man faktisk betaler (tilbud hvis det findes).
     // Senge uden kendt pris sorteres altid sidst.
+    const effective = (bed) => bed.salePrice ?? bed.price
     return [...filtered].sort((a, b) => {
-      if (a.price == null) {
+      if (effective(a) == null) {
         return 1
       }
-      if (b.price == null) {
+      if (effective(b) == null) {
         return -1
       }
-      return sort === 'asc' ? a.price - b.price : b.price - a.price
+      return sort === 'asc'
+        ? effective(a) - effective(b)
+        : effective(b) - effective(a)
     })
   }, [merged, brand, sort])
 

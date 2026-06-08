@@ -44,7 +44,8 @@ export const beds = [
     brand: 'Temprakon',
     retailer: 'Jysk',
     spring: 'Pocketfjedre 225/m² + 10 cm latex-top, Cooltex Breeze (køle-betræk)',
-    note: 'pt. udsalg (~14–15.000)',
+    salePrice: 14999,
+    note: 'ca. — Jysk-udsalg svinger',
     links: [
       priceRunner('Temprakon LYA'),
       prisjagt('Temprakon LYA'),
@@ -74,7 +75,8 @@ export const beds = [
     brand: 'Dunlopillo',
     retailer: 'Jysk',
     spring: 'Latex/skum, 7 komfortzoner + 8 cm latex-topmadras (allergivenlig)',
-    note: 'pt. udsalg (~23.000)',
+    salePrice: 23000,
+    note: 'Jysk-udsalg',
     links: [
       priceRunner('Dunlopillo C300'),
       prisjagt('Dunlopillo C300'),
@@ -101,7 +103,8 @@ export const beds = [
     brand: 'Jensen',
     retailer: 'time2sleep / seng.dk',
     spring: 'Jensen Pocket (3 separate pocketsystemer), blød skulderzone',
-    note: 'pt. tilbud ~38.059',
+    salePrice: 38059,
+    note: '35% hos time2sleep',
     links: [
       priceRunner('Jensen Prestige'),
       prisjagt('Jensen Prestige'),
@@ -137,7 +140,8 @@ export const beds = [
     brand: 'Jensen',
     retailer: 'time2sleep / seng.dk',
     spring: 'Aloy® 3.0 Pocket (14 cm) — Jensens nyeste, dybere hoftezone',
-    note: 'pt. tilbud ~46.929',
+    salePrice: 46929,
+    note: '35% hos time2sleep',
     links: [
       priceRunner('Jensen Supreme'),
       prisjagt('Jensen Supreme'),
