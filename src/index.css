@@ -1,0 +1,223 @@
+:root {
+  --bg: #0f1720;
+  --surface: #1b2530;
+  --surface-2: #243140;
+  --text: #e7edf3;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --border: #2c3a49;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.app__req {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.app__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.app__controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.app__controls select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+}
+
+.app__update {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  justify-content: flex-end;
+}
+
+.app__update-btn {
+  background: var(--accent);
+  color: #06222e;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.app__update-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.app__updated {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.app__msg {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.app__msg--err {
+  color: #fca5a5;
+}
+
+.card__source {
+  display: block;
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+.app__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card__model {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card__brand {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.card__price {
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.card__links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.card__links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.5rem 0.25rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.card__links a:hover {
+  border-color: var(--accent);
+}
+
+.card__links span {
+  font-size: 1.1rem;
+}
+
+.card__toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 0.45rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.card__toggle:hover {
+  border-color: var(--accent);
+}
+
+.assistant {
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.assistant h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.assistant__checklist {
+  margin: 0 0 0.75rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.assistant__notes {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  resize: vertical;
+}
