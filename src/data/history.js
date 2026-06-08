@@ -15,6 +15,11 @@ export function latestPrices() {
   return result
 }
 
+// Dato for seneste snapshot (eller null hvis historikken er tom).
+export function latestSnapshotDate() {
+  return snapshots.length ? snapshots[snapshots.length - 1].date : null
+}
+
 // Tidsserie for én seng: kun datapunkter hvor prisen er kendt.
 export function seriesFor(id) {
   return snapshots

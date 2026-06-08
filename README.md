@@ -6,63 +6,53 @@ Lille React-app til at holde styr på kandidater til en ny **kontinentalseng**.
 
 ## Features
 
-- Kort pr. sengemodel med prisinfo
-- 3-kolonne ikonknapper: PriceRunner · Prisjagt · forhandler
+- Kort pr. sengemodel med pris + evt. tilbuds-note
+- Ikon-knapper til pris-/forhandlersider (PriceRunner, Prisjagt, forhandler, seng.dk, Erling C.)
 - Filtrering på mærke
 - Sortering på pris (senge uden kendt pris sorteres sidst)
-- **"Opdater priser"-knap** der henter aktuelle priser via en serverless-funktion
-  (`/api/prices`) og cacher dem lokalt med "sidst opdateret"-dato
+- **Prishistorik pr. seng** — graf + nu/lavest/højest/antal målinger
 - Beslutnings-/notespanel pr. seng (noter gemmes lokalt i browseren)
-
-## Prisopdatering — sådan virker den
-
-`api/prices.js` (Vercel serverless) henter hver pris-sides HTML og udtrækker
-en pris via JSON-LD (`Product`/`offers`), med regex-fallback. Laveste fornuftige
-pris (≥ 2.000 kr) vælges.
-
-> ⚠️ **Skrøbeligt.** Når PriceRunner/Prisjagt ændrer layout, kan udtrækket
-> holde op med at virke. For mere stabil/præcis hentning: udfyld `productUrl`
-> på den enkelte seng i `src/data/beds.js` med et direkte produkt-link.
 
 ## Modeller på ønskelisten
 
-| Model    | Mærke      | Forhandler  |
-|----------|------------|-------------|
-| LYA      | Temprakon  | Jysk        |
-| C300     | Dunlopillo | Jysk        |
-| Prestige | Jensen     | Jensen Beds |
-| Supreme  | Jensen     | Jensen Beds |
+| Model    | Mærke      | Forhandler        |
+|----------|------------|-------------------|
+| LYA      | Temprakon  | Jysk              |
+| C300     | Dunlopillo | Jysk              |
+| Prestige | Jensen     | Delfin Sengecenter|
+| Supreme  | Jensen     | Delfin Sengecenter|
+| J5       | Jensen     | seng.dk           |
+| J6       | Jensen     | seng.dk           |
 
-Priser udfyldes i `src/data/beds.js` (feltet `price`) når de er slået op.
+## Priser og historik
+
+Priser **vedligeholdes manuelt** i `src/data/price-history.json` — ét snapshot
+pr. måling:
+
+```json
+{ "snapshots": [ { "date": "2026-06-08", "prices": { "lya": 29999, ... } } ] }
+```
+
+Appen viser seneste kendte pris pr. seng og tegner en graf over snapshots.
+For at opdatere: tilføj et nyt objekt i `snapshots` med dagens dato og de
+aktuelle priser, commit og push.
+
+> **Hvorfor manuelt?** Automatisk scraping blev afprøvet (`lib/prices.js`,
+> `api/prices.js`, `scripts/snapshot-prices.mjs` + GitHub Action) men viste sig
+> upålidelig: Jysk blokerer bots, og seng.dk renderer priser client-side (SPA),
+> så et generisk udtræk rammer forkerte tal. Koden er bevaret og Action'en kan
+> køres manuelt, men det ugentlige skema er slået fra indtil udtrækket er gjort
+> pålideligt (fx via produkt-specifikke selektorer).
 
 ## Kør lokalt
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173 — men /api virker IKKE her
+npm run dev      # http://localhost:5173
 npm run build    # produktionsbuild i dist/
-```
-
-For at teste **"Opdater priser"-knappen** lokalt skal serverless-funktionen
-også køre — det kræver Vercel CLI:
-
-```bash
-npm i -g vercel
-vercel dev       # serverer både appen og /api/prices
 ```
 
 ## Deploy til Vercel
 
-Du har terminal nu, så det hurtigste flow:
-
-```bash
-git init && git add . && git commit -m "init sengejagt"
-# opret et tomt repo på github.com, så:
-git remote add origin <repo-url>
-git push -u origin main
-```
-
-Derefter på [vercel.com](https://vercel.com): log ind med GitHub → **Import** repo'et →
-deploy med standardindstillinger (Vite detekteres automatisk).
-
-Alternativt helt uden GitHub: `npm i -g vercel && vercel`.
+Repo'et er koblet til Vercel — hver `git push` til `main` udløser et nyt deploy
+automatisk. Framework detekteres som Vite (build: `npm run build`, output: `dist`).

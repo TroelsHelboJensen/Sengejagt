@@ -3,21 +3,20 @@ import AIAssistant from './AIAssistant.jsx'
 import PriceHistory from './PriceHistory.jsx'
 import { seriesFor } from '../data/history.js'
 
-// Ikon-knapperne: PriceRunner, Prisjagt og forhandlerens hjemmeside.
-const LinkButtons = ({ bed }) => (
+// Ikon-knapper til pris-/forhandlersider (PriceRunner, Prisjagt, seng.dk …).
+const LinkButtons = ({ links }) => (
   <div className="card__links">
-    <a href={bed.links.priceRunner} target="_blank" rel="noopener noreferrer">
-      <span aria-hidden>🏷️</span>
-      PriceRunner
-    </a>
-    <a href={bed.links.prisjagt} target="_blank" rel="noopener noreferrer">
-      <span aria-hidden>🔍</span>
-      Prisjagt
-    </a>
-    <a href={bed.retailerUrl} target="_blank" rel="noopener noreferrer">
-      <span aria-hidden>🏬</span>
-      {bed.retailer}
-    </a>
+    {links.map((link) => (
+      <a
+        key={link.label}
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span aria-hidden>{link.icon}</span>
+        {link.label}
+      </a>
+    ))}
   </div>
 )
 
@@ -42,13 +41,11 @@ export default function BedCard({ bed }) {
         </div>
         <span className="card__price">
           {formatPrice(bed.price)}
-          {bed.priceSource && (
-            <small className="card__source">via {bed.priceSource}</small>
-          )}
+          {bed.note && <small className="card__source">{bed.note}</small>}
         </span>
       </header>
 
-      <LinkButtons bed={bed} />
+      <LinkButtons links={bed.links} />
 
       <PriceHistory series={seriesFor(bed.id)} />
 
