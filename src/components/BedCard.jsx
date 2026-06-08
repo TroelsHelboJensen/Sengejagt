@@ -29,6 +29,26 @@ const formatPrice = (price) =>
         maximumFractionDigits: 0,
       }).format(price)
 
+// Anmeldelser: rating-chip (hvis kendt), kort vurdering og kilde-links.
+const Reviews = ({ reviews }) => (
+  <div className="card__reviews">
+    {reviews.rating != null && (
+      <span className="card__rating">
+        ★ {reviews.rating.toString().replace('.', ',')}
+        {reviews.count ? ` (${reviews.count}+)` : ''}
+      </span>
+    )}
+    <p className="card__verdict">{reviews.verdict}</p>
+    <div className="card__review-links">
+      {reviews.sources.map((s) => (
+        <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer">
+          {s.icon} {s.label}
+        </a>
+      ))}
+    </div>
+  </div>
+)
+
 export default function BedCard({ bed }) {
   const [open, setOpen] = useState(false)
 
@@ -50,6 +70,8 @@ export default function BedCard({ bed }) {
       <LinkButtons links={bed.links} />
 
       <PriceHistory series={seriesFor(bed.id)} />
+
+      {bed.reviews && <Reviews reviews={bed.reviews} />}
 
       <button
         className="card__toggle"

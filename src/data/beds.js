@@ -7,14 +7,14 @@
 //   - Ingen elevation
 //
 // Priser vedligeholdes MANUELT i src/data/price-history.json (ét snapshot
-// pr. måling). Tallene her er "normal/list"-priser for 180×210 pr.
+// pr. måling). Tallene der er "normal/list"-priser for 180×210 pr.
 // 2026-06-08; aktuelle tilbud står i `note`. Automatisk scraping er opgivet
 // (Jysk blokerer bots, seng.dk/time2sleep er SPA'er).
 //
-// NB: Jensen J5 = Prestige og J6 = Supreme (samme seng, to navne) — derfor
-// kun én post pr. model.
+// NB: Jensen J5 = Prestige og J6 = Supreme (samme seng, to navne).
 //
-// `links` er en liste af pris-/forhandler-links der vises som ikon-knapper.
+// `links` = pris-/forhandler-links (ikon-knapper).
+// `reviews` = kort vurdering + kilder med rating hvor den findes.
 
 export const requirements = {
   minWidth: 180,
@@ -43,7 +43,7 @@ export const beds = [
     model: 'LYA',
     brand: 'Temprakon',
     retailer: 'Jysk',
-    spring: 'Pocketfjedre 225/m², Cooltex Breeze (temperaturregulerende)',
+    spring: 'Pocketfjedre 225/m² + 10 cm latex-top, Cooltex Breeze (køle-betræk)',
     note: 'pt. udsalg (~14–15.000)',
     links: [
       priceRunner('Temprakon LYA'),
@@ -54,13 +54,26 @@ export const beds = [
         'https://jysk.dk/sovevaerelse/kontinentalsenge/kontinentalseng-180x210cm-temprakon-lya-graa-42',
       ),
     ],
+    reviews: {
+      rating: null,
+      count: null,
+      verdict:
+        'Blandet: ros for køle-komfort, men gentagne klager over samlekvalitet og holdbarhed.',
+      sources: [
+        link(
+          'Trustpilot',
+          '⭐',
+          'https://dk.trustpilot.com/review/www.temprakon.com',
+        ),
+      ],
+    },
   },
   {
     id: 'c300',
     model: 'C300',
     brand: 'Dunlopillo',
     retailer: 'Jysk',
-    spring: 'Latex/skum, 7 komfortzoner + 8 cm latex-topmadras',
+    spring: 'Latex/skum, 7 komfortzoner + 8 cm latex-topmadras (allergivenlig)',
     note: 'pt. udsalg (~23.000)',
     links: [
       priceRunner('Dunlopillo C300'),
@@ -71,6 +84,16 @@ export const beds = [
         'https://jysk.dk/sovevaerelse/kontinentalsenge/kontinentalseng-180x210-dunlopillo-c300-graa-32',
       ),
     ],
+    reviews: {
+      rating: null,
+      count: null,
+      verdict:
+        'Positiv: komfortabel latex, god holdbarhed og allergivenlig (OEKO-TEX). Dunlopillo har lang historik.',
+      sources: [
+        link('Trustpilot', '⭐', 'https://www.trustpilot.com/review/dunlopillo.dk'),
+        link('sove.nu', '📝', 'https://sove.nu/brand/dunlopillo/'),
+      ],
+    },
   },
   {
     id: 'prestige',
@@ -94,13 +117,26 @@ export const beds = [
         'https://jensen-beds.com/dk/senge/prestige-sc21/kontinental/',
       ),
     ],
+    reviews: {
+      rating: 4.9,
+      count: 5500,
+      verdict:
+        'Fremragende: Jensen Beds 4,9/5 på Trustpilot. 25 års garanti mod fjeder-/rammebrud, Svanemærket, 3 fasthedsgrader (medium/fast/ekstra fast).',
+      sources: [
+        link(
+          'Trustpilot',
+          '⭐',
+          'https://www.trustpilot.com/review/www.jensen-beds.com',
+        ),
+      ],
+    },
   },
   {
     id: 'supreme',
     model: 'Supreme (J6)',
     brand: 'Jensen',
     retailer: 'time2sleep / seng.dk',
-    spring: 'Aloy® 3.0 Pocket (14 cm) — Jensens nyeste, bedre hoftezone',
+    spring: 'Aloy® 3.0 Pocket (14 cm) — Jensens nyeste, dybere hoftezone',
     note: 'pt. tilbud ~46.929',
     links: [
       priceRunner('Jensen Supreme'),
@@ -117,5 +153,23 @@ export const beds = [
       ),
       link('Jensen', '⭐', 'https://jensen-beds.com/dk/'),
     ],
+    reviews: {
+      rating: 4.9,
+      count: 5500,
+      verdict:
+        'Fremragende: som Prestige + Aloy 3.0 og eksklusive uldtekstiler. Topvurderet; bedst til tungere side-sovere pga. dybere hoftezone.',
+      sources: [
+        link(
+          'Trustpilot',
+          '⭐',
+          'https://www.trustpilot.com/review/www.jensen-beds.com',
+        ),
+        link(
+          'Ameldo',
+          '📝',
+          'https://www.ameldo.dk/anmeldelse-test/jensen-supreme-kontinentalseng',
+        ),
+      ],
+    },
   },
 ]

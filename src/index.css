@@ -197,6 +197,47 @@ body {
   font-weight: 600;
 }
 
+.card__reviews {
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card__rating {
+  align-self: flex-start;
+  background: var(--surface-2);
+  border-radius: 6px;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fcd34d;
+}
+
+.card__verdict {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.card__review-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card__review-links a {
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card__review-links a:hover {
+  text-decoration: underline;
+}
+
 .card__toggle {
   background: transparent;
   border: 1px solid var(--border);
