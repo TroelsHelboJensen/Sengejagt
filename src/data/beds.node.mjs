@@ -1,6 +1,6 @@
 // Node-loader. Samme data som browser-loaderen (beds.js), men læser
 // src/data/beds/*.json via fs i stedet for Vites import.meta.glob.
-// Bruges af api/prices.js og scripts/snapshot-prices.mjs.
+// Bruges af api/prices.js (serverless pris-opslag).
 
 import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'

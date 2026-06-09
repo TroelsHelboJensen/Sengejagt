@@ -1,6 +1,6 @@
 // Vercel serverless-funktion: GET /api/prices
-// Live-kald af pris-hentningen. Selve logikken bor i lib/prices.js, så den
-// deles med GitHub Action'en der gemmer historik (scripts/snapshot-prices.mjs).
+// Live-hentning af aktuelle priser (logikken bor i lib/prices.js). Bruges af
+// "Slå priser op"-knappen på forsiden, som VISER priserne — der gemmes intet.
 
 import { beds } from '../src/data/beds.node.mjs'
 import { resolveAllPrices } from '../lib/prices.js'
