@@ -21,9 +21,13 @@ export function resolveBed(bed) {
   const searchLinks = bed.priceQuery
     ? [priceRunner(bed.priceQuery), prisjagt(bed.priceQuery)]
     : []
+  // Kilde-/produktside-linket vises som en knap, hvis det er udfyldt.
+  const sourceLink = bed.sourceUrl
+    ? [{ label: 'Produktside', icon: '🔗', url: bed.sourceUrl }]
+    : []
   return {
     ...bed,
-    links: [...searchLinks, ...(bed.links ?? [])],
+    links: [...searchLinks, ...(bed.links ?? []), ...sourceLink],
   }
 }
 

@@ -57,6 +57,16 @@ collections:
       - { label: Fjeder / spec, name: spring, widget: string, required: false }
       - { label: Tilbudspris (DKK), name: salePrice, widget: number, required: false, value_type: int }
       - { label: Note, name: note, widget: string, required: false }
+      - label: Produktside-link (kilde)
+        name: sourceUrl
+        widget: string
+        required: false
+        hint: "Link til produktsiden. Bruges til at udfylde resten af felterne og vises som '🔗 Produktside'-knap."
+      - label: Screenshot af produktside
+        name: image
+        widget: image
+        required: false
+        hint: "Valgfrit billede af produktsiden — reference til at udfylde info (virker selv når siden blokerer bots)."
       - label: Pris-historik
         name: priceHistory
         widget: list

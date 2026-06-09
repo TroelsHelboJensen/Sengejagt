@@ -62,6 +62,20 @@ Loaderne samler filerne: `src/data/beds.js` (browser, via Vites
 `import.meta.glob`) og `src/data/beds.node.mjs` (Node — bruges af `api/` — via
 `fs`). Begge genbruger pris-link-logikken i `src/data/resolve-bed.js`.
 
+### Tilføj en ny seng (link + screenshot → Claude udfylder)
+
+Automatisk scraping er upålidelig, så i stedet:
+
+1. Opret sengen i admin med kun **`sourceUrl`** (produktside-link) og et
+   **`image`** (screenshot af produktsiden). Giv den et `id`.
+2. Bed **Claude** udfylde resten: Claude åbner linket og *læser screenshottet*
+   (virker selv når siden blokerer bots/er en SPA) og udfylder model, mærke,
+   pris, fjeder-specs og anmeldelser.
+3. Er det en **ny producent** (mærke der ikke allerede er på en seng), tilføjer
+   Claude producentens hjemmeside som et link på produktet.
+
+`sourceUrl` vises på kortet som en **🔗 Produktside**-knap.
+
 **Login** sker med en **GitHub-konto**, og adgang styres af hvem der er
 *collaborator* på repoet. OAuth håndteres af `api/auth.js` + `api/callback.js`
 (Decap kan ikke bruge Netlifys gratis-login, da vi hoster på Vercel).
