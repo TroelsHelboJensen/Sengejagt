@@ -1,6 +1,5 @@
-// Delt, miljø-uafhængig transform: en rå seng (fra JSON) → en seng med
-// færdige links. Bruges af både browser-loaderen (beds.js, via Vite) og
-// Node-loaderen (beds.node.mjs, via fs), så logikken kun findes ét sted.
+// Delt transform: en rå seng (fra JSON) → en seng med færdige links.
+// Bruges af browser-loaderen (beds.js), så logikken kun findes ét sted.
 //
 // Et `priceQuery` genererer automatisk PriceRunner- + Prisjagt-søgelinks,
 // som lægges foran sengens evt. eksplicitte forhandler-links.
@@ -36,9 +35,8 @@ export function byOrder(a, b) {
   return (a.order ?? 999) - (b.order ?? 999)
 }
 
-// Rå seng-liste → de senge der skal VISES offentligt: skjulte (`hidden`) frasorteres,
-// resten får færdige links og sorteres. Delt af begge loaders (beds.js +
-// beds.node.mjs), så `hidden` håndhæves ét sted — også for /api/prices.
+// Rå seng-liste → de senge der skal VISES offentligt: skjulte (`hidden`)
+// frasorteres, resten får færdige links og sorteres.
 // NB: admin (Decap) læser JSON-filerne direkte og viser stadig ALLE senge.
 export function toBedList(rawBeds) {
   return rawBeds
