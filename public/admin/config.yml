@@ -51,6 +51,12 @@ collections:
         required: false
         value_type: int
         hint: "Lavere tal vises først på siden."
+      - label: Skjul fra siden
+        name: hidden
+        widget: boolean
+        required: false
+        default: false
+        hint: "Slå til for at gemme sengen væk fra det offentlige site. Den bliver stadig i admin."
       - { label: Model, name: model, widget: string }
       - { label: Mærke, name: brand, widget: string }
       - { label: Forhandler, name: retailer, widget: string, required: false }

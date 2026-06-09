@@ -13,6 +13,7 @@ Lille React-app til at holde styr på kandidater til en ny **kontinentalseng**.
 - **"Set & afprøvet"-sektion** — log over produkter vi har set/prøvet (billede, vurdering 1–10, note, hvor/hvornår)
 - **"🔄 Slå priser op"-knap** — henter aktuelle priser og viser dem (gemmer intet)
 - **Admin på `/admin`** (Decap CMS) til at redigere senge, "set & afprøvet" og krav
+- **Skjul senge fra siden** via admin-feltet "Skjul fra siden" (sengen beholdes i admin)
 - Beslutnings-/notespanel pr. seng (noter gemmes lokalt i browseren)
 
 ## Modeller på ønskelisten

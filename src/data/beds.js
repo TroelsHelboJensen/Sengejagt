@@ -19,7 +19,10 @@ export { requirements }
 
 const modules = import.meta.glob('./beds/*.json', { eager: true })
 
+// Senge med `hidden: true` er skjult fra det offentlige site (men beholdes i
+// admin). Resten vises, sorteret efter `order`.
 export const beds = Object.values(modules)
   .map((module) => module.default ?? module)
+  .filter((bed) => !bed.hidden)
   .map(resolveBed)
   .sort(byOrder)
