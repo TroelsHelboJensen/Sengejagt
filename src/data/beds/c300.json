@@ -1,16 +1,18 @@
 {
-  "id": "c300",
-  "order": 2,
-  "model": "C300",
-  "brand": "Dunlopillo",
-  "retailer": "Jysk",
-  "spring": "Latex/skum, 7 komfortzoner + 8 cm latex-topmadras (allergivenlig)",
   "salePrice": 23000,
-  "note": "Jysk-udsalg",
+  "brand": "Dunlopillo",
+  "model": "C300",
+  "hidden": true,
   "priceHistory": [
-    { "date": "2026-06-08", "price": 45999 }
+    {
+      "date": "2026-06-08",
+      "price": 45999
+    }
   ],
-  "priceQuery": "Dunlopillo C300",
+  "spring": "Latex/skum, 7 komfortzoner + 8 cm latex-topmadras (allergivenlig)",
+  "order": 2,
+  "retailer": "Jysk",
+  "note": "Jysk-udsalg",
   "links": [],
   "reviews": {
     "rating": null,
@@ -28,5 +30,7 @@
         "url": "https://sove.nu/brand/dunlopillo/"
       }
     ]
-  }
+  },
+  "id": "c300",
+  "priceQuery": "Dunlopillo C300"
 }
