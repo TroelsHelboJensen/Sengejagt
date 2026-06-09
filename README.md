@@ -73,6 +73,17 @@ Automatisk scraping er upålidelig, så i stedet:
 
 `sourceUrl` vises på kortet som en **🔗 Produktside**-knap.
 
+### Hurtig tilføj-kø (kun links + billeder)
+
+Vil du tilføje flere senge hurtigt uden at udfylde id/mærke/model: brug
+samlingen **"Tilføj-kø (nye senge)"** i admin. Den redigerer `src/data/queue.json`
+— tilføj bare en række pr. seng med et **link** og evt. et **screenshot**, og gem.
+
+Bed derefter Claude om at **"behandle køen"**: Claude læser hvert emne, opretter
+en færdig `src/data/beds/<id>.json` (med rent id, model, mærke, pris, specs,
+producent-link ved nyt mærke) og **tømmer køen** igen. Køen vises ikke på det
+offentlige site.
+
 **Login** sker med en **GitHub-konto**, og adgang styres af hvem der er
 *collaborator* på repoet. OAuth håndteres af `api/auth.js` + `api/callback.js`
 (Decap kan ikke bruge Netlifys gratis-login, da vi hoster på Vercel).

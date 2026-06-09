@@ -162,6 +162,34 @@ collections:
         format: "YYYY-MM-DD"
         picker_utc: true
 
+  # Hurtig tilføj-kø: smid bare links (+ evt. screenshots) i listen.
+  # Claude opretter de færdige senge ud fra dem og tømmer køen bagefter.
+  - name: tilfoej-koe
+    label: Tilføj-kø (nye senge)
+    files:
+      - name: koe
+        label: Kø
+        file: src/data/queue.json
+        description: >-
+          Tilføj en række pr. seng med bare et produktside-link og evt. et
+          screenshot. Bed derefter Claude om at "behandle køen" — så oprettes
+          sengene (model, mærke, pris, specs) og køen tømmes.
+        fields:
+          - label: Senge der skal oprettes
+            name: items
+            widget: list
+            label_singular: Seng-emne
+            required: false
+            summary: "{{fields.link}}"
+            fields:
+              - { label: Produktside-link, name: link, widget: string }
+              - label: Screenshot (valgfrit)
+                name: image
+                widget: image
+                required: false
+                hint: "Hjælper Claude hvis siden blokerer bots."
+              - { label: Note (valgfri), name: note, widget: string, required: false }
+
   # Krav til alle modeller (sjældent ændret) — egen lille indstillingsfil.
   - name: indstillinger
     label: Indstillinger
