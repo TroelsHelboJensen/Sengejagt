@@ -17,8 +17,9 @@ Lille React-app til at holde styr på kandidater til en ny **kontinentalseng**.
 
 ## Modeller på ønskelisten
 
-Hver seng er sin egen fil i `src/data/beds/<id>.json`. **Jensen J5 = Prestige og
-J6 = Supreme** (samme seng, to navne) — derfor 4 modeller, ikke 6.
+Senge tilføjes/redigeres i admin; hver er sin egen fil i
+`src/data/beds/<id>.json`. **Jensen J5 = Prestige og J6 = Supreme** (samme seng,
+to navne). Aktuelle modeller:
 
 | Model         | Mærke      | Forhandler            |
 |---------------|------------|-----------------------|
@@ -26,6 +27,7 @@ J6 = Supreme** (samme seng, to navne) — derfor 4 modeller, ikke 6.
 | C300          | Dunlopillo | Jysk                  |
 | Prestige (J5) | Jensen     | time2sleep / seng.dk  |
 | Supreme (J6)  | Jensen     | time2sleep / seng.dk  |
+| Vola          | Lygna      | Jysk                  |
 
 ## Priser og historik
 

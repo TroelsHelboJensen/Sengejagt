@@ -1,0 +1,20 @@
+{
+  "id": "lygna-vola",
+  "order": 5,
+  "model": "Vola",
+  "brand": "Lygna",
+  "retailer": "Jysk",
+  "spring": "Pocketfjedre, 7 komfortzoner + 3 komfortlag, 10 cm gel-skum topmadras (fast)",
+  "salePrice": 10400,
+  "note": "Jysk-udsalg (−50%)",
+  "sourceUrl": "https://jysk.dk/sovevaerelse/senge/kontinentalsenge/kontinentalseng-180x210cm-lygna-vola-graa-23-fast",
+  "priceHistory": [
+    { "date": "2026-06-09", "price": 20799 }
+  ],
+  "reviews": {
+    "rating": null,
+    "count": null,
+    "verdict": "JYSK-eksklusiv (Dreamzone-serien). Fast/stabil kontinentalseng med pocketfjedre, 7 komfortzoner + 3 komfortlag og 10 cm gel-skum topmadras. 0 anmeldelser på produktsiden endnu — vurdér selv.",
+    "sources": []
+  }
+}
