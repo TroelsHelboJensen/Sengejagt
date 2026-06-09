@@ -1,0 +1,30 @@
+{
+  "id": "tempur-dual-luxe",
+  "order": 8,
+  "model": "Dual Luxe",
+  "brand": "Tempur",
+  "retailer": "drømmeland.dk",
+  "spring": "Pocketfjeder-madras + 10 cm TEMPUR Advanced topmadras, SmartCool-betræk, OEKO-TEX. Fasthed: soft / medium / fast. Ingen elevation.",
+  "note": "180×210-pris ikke bekræftet",
+  "sourceUrl": "https://www.droemmeland.dk/produkter/tempur-dual-luxe-kontinental",
+  "priceQuery": "Tempur Dual Luxe kontinental",
+  "links": [
+    {
+      "label": "Tempur",
+      "icon": "⭐",
+      "url": "https://www.tempur.dk"
+    }
+  ],
+  "reviews": {
+    "rating": null,
+    "count": null,
+    "verdict": "Premium Tempur kontinentalseng: pocketfjedre + 10 cm TEMPUR-topmadras, 3 fasthedsgrader, SmartCool-betræk, OEKO-TEX, ingen elevation. 180×210-prisen er ikke bekræftet (den viste 29.999 var 140×200) — bekræft via produktsiden/screenshot. Tempur har generelt høj Trustpilot-vurdering.",
+    "sources": [
+      {
+        "label": "Trustpilot",
+        "icon": "⭐",
+        "url": "https://dk.trustpilot.com/review/tempur.dk"
+      }
+    ]
+  }
+}

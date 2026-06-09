@@ -1,0 +1,25 @@
+{
+  "id": "vidaxl-velvet",
+  "order": 6,
+  "model": "Velvet",
+  "brand": "vidaXL",
+  "retailer": "vidaXL",
+  "spring": "Pocketfjedre, 25 cm madras, velour-betræk (mørkegrå), træramme",
+  "salePrice": 4627,
+  "note": "Billigste hos vidaXL",
+  "sourceUrl": "https://www.pricerunner.dk/pl/457-3389505102/Senge-Madrasser/vidaXL-Velvet-Kontinentalseng-180x210cm-Sammenlign-Priser",
+  "priceQuery": "vidaXL Velvet kontinentalseng 180x210",
+  "links": [
+    {
+      "label": "vidaXL",
+      "icon": "🏬",
+      "url": "https://www.vidaxl.dk"
+    }
+  ],
+  "reviews": {
+    "rating": null,
+    "count": null,
+    "verdict": "Budget-kontinentalseng (~4.600 kr) med pocketfjedre og velour-betræk. Markant billigere end de øvrige kandidater — forvent tilsvarende lavere holdbarhed; tjek anmeldelser før køb.",
+    "sources": []
+  }
+}
