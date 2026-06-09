@@ -1,28 +1,42 @@
-import historyData from './price-history.json'
+// Pris-historik udledes nu fra hver sengs egen `priceHistory` (i bed-filerne),
+// så priser kan opdateres pr. seng direkte i admin. API'et er uændret, så
+// App.jsx og BedCard.jsx ikke skal røres.
 
-const snapshots = historyData.snapshots ?? []
+import { beds } from './beds.js'
 
-// Seneste kendte (ikke-null) pris pr. seng, set hen over alle snapshots.
+const historyOf = (bed) =>
+  (bed?.priceHistory ?? []).filter((point) => point && point.price != null)
+
+// Tidsserie for én seng: kun datapunkter hvor prisen er kendt, ældste først.
+export function seriesFor(id) {
+  const bed = beds.find((b) => b.id === id)
+  return historyOf(bed)
+    .map((point) => ({ date: point.date, price: point.price }))
+    .sort((a, b) => a.date.localeCompare(b.date))
+}
+
+// Seneste kendte pris pr. seng.
 export function latestPrices() {
   const result = {}
-  for (const snap of snapshots) {
-    for (const [id, price] of Object.entries(snap.prices ?? {})) {
-      if (price != null) {
-        result[id] = price
-      }
+  for (const bed of beds) {
+    const series = seriesFor(bed.id)
+    if (series.length) {
+      result[bed.id] = series[series.length - 1].price
     }
   }
   return result
 }
 
-// Dato for seneste snapshot (eller null hvis historikken er tom).
+// Nyeste dato på tværs af alle senges pris-historik (eller null).
 export function latestSnapshotDate() {
-  return snapshots.length ? snapshots[snapshots.length - 1].date : null
-}
-
-// Tidsserie for én seng: kun datapunkter hvor prisen er kendt.
-export function seriesFor(id) {
-  return snapshots
-    .filter((snap) => snap.prices?.[id] != null)
-    .map((snap) => ({ date: snap.date, price: snap.prices[id] }))
+  let latest = null
+  for (const bed of beds) {
+    for (const point of historyOf(bed)) {
+      if (latest == null ||
+        point.date > latest) {
+        latest = point.date
+      }
+    }
+  }
+  return latest
 }

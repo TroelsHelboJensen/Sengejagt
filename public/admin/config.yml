@@ -1,0 +1,160 @@
+# Decap CMS konfiguration.
+#
+# Login sker via GitHub (repoets git-vært). "Allowlisten" er hvem der er
+# collaborator på repoet — kun de kan logge ind og redigere.
+#
+# OAuth håndteres af vores egne Vercel-funktioner (api/auth.js + api/callback.js),
+# da vi ikke er på Netlify. base_url skal pege på det DEPLOYEDE domæne.
+backend:
+  name: github
+  repo: TroelsHelboJensen/Sengejagt
+  branch: main
+  # 👇 ERSTAT med dit rigtige Vercel-domæne (uden afsluttende skråstreg).
+  base_url: https://sengejagt.vercel.app
+  auth_endpoint: api/auth
+
+# Slå denne til ved lokal redigering uden OAuth:
+#   1) sæt local_backend: true
+#   2) kør i et separat terminalvindue:  npx decap-server
+#   3) kør appen:  npm run dev  →  åbn http://localhost:5173/admin
+#local_backend: true
+
+# Media bruges ikke (ingen billed-upload), men Decap kræver felterne.
+media_folder: public/uploads
+public_folder: /uploads
+
+# Sproget i admin-UI'en.
+locale: da
+
+collections:
+  # Mappe-samling: hver seng er sin egen fil i src/data/beds/.
+  # Oversigten viser alle senge som en liste med en "Ny Seng"-knap.
+  - name: senge
+    label: Senge
+    label_singular: Seng
+    folder: src/data/beds
+    create: true
+    extension: json
+    format: json
+    slug: "{{fields.id}}"
+    identifier_field: model
+    summary: "{{fields.brand}} {{fields.model}}"
+    sortable_fields: [order, model, brand, salePrice]
+    fields:
+      - label: ID
+        name: id
+        widget: string
+        hint: "Unik nøgle uden mellemrum, fx 'lya'. Bruges som filnavn og som kobling til prishistorikken."
+      - label: Sortering
+        name: order
+        widget: number
+        required: false
+        value_type: int
+        hint: "Lavere tal vises først på siden."
+      - { label: Model, name: model, widget: string }
+      - { label: Mærke, name: brand, widget: string }
+      - { label: Forhandler, name: retailer, widget: string, required: false }
+      - { label: Fjeder / spec, name: spring, widget: string, required: false }
+      - { label: Tilbudspris (DKK), name: salePrice, widget: number, required: false, value_type: int }
+      - { label: Note, name: note, widget: string, required: false }
+      - label: Pris-historik
+        name: priceHistory
+        widget: list
+        required: false
+        label_singular: Pris
+        summary: "{{fields.date}}: {{fields.price}} kr"
+        hint: "Tilføj en ny række (dato + pris) for at opdatere prisen. Nyeste vises på siden."
+        fields:
+          - label: Dato
+            name: date
+            widget: datetime
+            date_format: "DD-MM-YYYY"
+            time_format: false
+            format: "YYYY-MM-DD"
+            picker_utc: true
+          - { label: Pris (DKK), name: price, widget: number, value_type: int }
+      - label: Pris-søgning
+        name: priceQuery
+        widget: string
+        required: false
+        hint: "Søgetekst, fx 'Jensen Supreme'. Genererer automatisk PriceRunner- og Prisjagt-links."
+      - label: Ekstra links
+        name: links
+        widget: list
+        required: false
+        label_singular: Link
+        summary: "{{fields.label}}"
+        fields:
+          - { label: Tekst, name: label, widget: string }
+          - { label: Ikon (emoji), name: icon, widget: string }
+          - { label: URL, name: url, widget: string }
+      - label: Anmeldelser
+        name: reviews
+        widget: object
+        required: false
+        fields:
+          - { label: Rating, name: rating, widget: number, required: false, value_type: float }
+          - { label: Antal (count), name: count, widget: number, required: false, value_type: int }
+          - { label: Vurdering, name: verdict, widget: text, required: false }
+          - label: Kilder
+            name: sources
+            widget: list
+            required: false
+            label_singular: Kilde
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Tekst, name: label, widget: string }
+              - { label: Ikon (emoji), name: icon, widget: string }
+              - { label: URL, name: url, widget: string }
+
+  # Set & afprøvet: løbende log over produkter vi har set/prøvet + vores indtryk.
+  # Hver post er sin egen fil i src/data/seen/.
+  - name: set-afproevet
+    label: Set & afprøvet
+    label_singular: Post
+    folder: src/data/seen
+    create: true
+    extension: json
+    format: json
+    slug: "{{fields.produkt}}"
+    identifier_field: produkt
+    summary: "{{fields.produkt}}"
+    sortable_fields: [hvornaar, vurdering, produkt]
+    fields:
+      - { label: Produkt, name: produkt, widget: string }
+      - { label: Mærke, name: maerke, widget: string, required: false }
+      - label: Billede
+        name: billede
+        widget: image
+        required: false
+        hint: "Valgfrit foto — gemmes i public/uploads."
+      - label: Vores vurdering (1–10)
+        name: vurdering
+        widget: number
+        required: false
+        value_type: int
+        min: 1
+        max: 10
+      - { label: Hvad vi synes, name: synes, widget: text, required: false }
+      - { label: Hvor (butik/sted), name: hvor, widget: string, required: false }
+      - label: Hvornår
+        name: hvornaar
+        widget: datetime
+        required: false
+        date_format: "DD-MM-YYYY"
+        time_format: false
+        format: "YYYY-MM-DD"
+        picker_utc: true
+
+  # Krav til alle modeller (sjældent ændret) — egen lille indstillingsfil.
+  - name: indstillinger
+    label: Indstillinger
+    files:
+      - name: krav
+        label: Krav til modeller
+        file: src/data/requirements.json
+        fields:
+          - { label: Min. bredde (cm), name: minWidth, widget: number, value_type: int }
+          - { label: Min. længde (cm), name: minLength, widget: number, value_type: int }
+          - { label: Type, name: type, widget: string }
+          - { label: Elevation, name: elevation, widget: boolean, default: false }

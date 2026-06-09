@@ -1,0 +1,32 @@
+{
+  "id": "c300",
+  "order": 2,
+  "model": "C300",
+  "brand": "Dunlopillo",
+  "retailer": "Jysk",
+  "spring": "Latex/skum, 7 komfortzoner + 8 cm latex-topmadras (allergivenlig)",
+  "salePrice": 23000,
+  "note": "Jysk-udsalg",
+  "priceHistory": [
+    { "date": "2026-06-08", "price": 45999 }
+  ],
+  "priceQuery": "Dunlopillo C300",
+  "links": [],
+  "reviews": {
+    "rating": null,
+    "count": null,
+    "verdict": "Positiv: komfortabel latex, god holdbarhed og allergivenlig (OEKO-TEX). Dunlopillo har lang historik.",
+    "sources": [
+      {
+        "label": "Trustpilot",
+        "icon": "⭐",
+        "url": "https://www.trustpilot.com/review/dunlopillo.dk"
+      },
+      {
+        "label": "sove.nu",
+        "icon": "📝",
+        "url": "https://sove.nu/brand/dunlopillo/"
+      }
+    ]
+  }
+}

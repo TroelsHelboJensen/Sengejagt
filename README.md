@@ -26,23 +26,60 @@ Lille React-app til at holde styr på kandidater til en ny **kontinentalseng**.
 
 ## Priser og historik
 
-Priser **vedligeholdes manuelt** i `src/data/price-history.json` — ét snapshot
-pr. måling:
+Priser **vedligeholdes manuelt pr. seng** i hver bed-fils `priceHistory` (dato
++ pris):
 
 ```json
-{ "snapshots": [ { "date": "2026-06-08", "prices": { "lya": 29999, ... } } ] }
+"priceHistory": [ { "date": "2026-06-08", "price": 29999 } ]
 ```
 
-Appen viser seneste kendte pris pr. seng og tegner en graf over snapshots.
-For at opdatere: tilføj et nyt objekt i `snapshots` med dagens dato og de
-aktuelle priser, commit og push.
+Appen viser seneste kendte pris pr. seng og tegner en graf over historikken.
+For at opdatere: åbn sengen i admin (eller rediger filen) og tilføj en ny
+række i **Pris-historik** med dagens dato og prisen.
 
-> **Hvorfor manuelt?** Automatisk scraping blev afprøvet (`lib/prices.js`,
-> `api/prices.js`, `scripts/snapshot-prices.mjs` + GitHub Action) men viste sig
+**"Slå priser op"-knappen** på forsiden henter aktuelle priser fra kilderne
+(`/api/prices` → `lib/prices.js`) og **viser** dem, så du hurtigt kan slå op —
+men den gemmer intet; du indtaster selv tallene pr. seng. Knappen virker kun på
+det deployede site (Vercel-funktionen), ikke i lokal `npm run dev`.
+
+> **Hvorfor manuelt?** Automatisk scraping blev afprøvet men viste sig
 > upålidelig: Jysk blokerer bots, og seng.dk renderer priser client-side (SPA),
-> så et generisk udtræk rammer forkerte tal. Koden er bevaret og Action'en kan
-> køres manuelt, men det ugentlige skema er slået fra indtil udtrækket er gjort
-> pålideligt (fx via produkt-specifikke selektorer).
+> så et generisk udtræk rammer forkerte tal. Derfor er priser manuelle, og
+> opslags-knappen viser kun tal til inspiration frem for at gemme dem blindt.
+
+## Admin-side (Decap CMS)
+
+Hver seng er sin egen fil i **`src/data/beds/<id>.json`** (krav til modeller i
+`src/data/requirements.json`). De redigeres enten direkte i filerne eller via en
+admin-side på **`/admin`** (Decap CMS), der viser sengene som en liste med en
+"Ny Seng"-knap. Admin'en committer ændringerne til repoet, hvorefter Vercel
+automatisk genbygger — så en opdatering er live efter ~1 minut.
+
+Loaderne samler filerne: `src/data/beds.js` (browser, via Vites
+`import.meta.glob`) og `src/data/beds.node.mjs` (Node — bruges af `api/` — via
+`fs`). Begge genbruger pris-link-logikken i `src/data/resolve-bed.js`.
+
+**Login** sker med en **GitHub-konto**, og adgang styres af hvem der er
+*collaborator* på repoet. OAuth håndteres af `api/auth.js` + `api/callback.js`
+(Decap kan ikke bruge Netlifys gratis-login, da vi hoster på Vercel).
+
+### Engangsopsætning
+
+1. **Opret en GitHub OAuth App** — GitHub → Settings → Developer settings →
+   OAuth Apps → *New OAuth App*:
+   - *Homepage URL:* `https://<dit-domæne>.vercel.app`
+   - *Authorization callback URL:* `https://<dit-domæne>.vercel.app/api/callback`
+2. **Læg client-id og secret i Vercel** (Project → Settings → Environment Variables):
+   - `OAUTH_GITHUB_CLIENT_ID`
+   - `OAUTH_GITHUB_CLIENT_SECRET`
+3. **Sæt dit domæne** i `public/admin/config.yml` under `backend.base_url`.
+4. Deploy. Åbn `https://<dit-domæne>.vercel.app/admin` og log ind med GitHub.
+
+### Rediger lokalt uden OAuth
+
+I `public/admin/config.yml`: sæt `local_backend: true`, kør `npx decap-server` i
+ét terminalvindue og `npm run dev` i et andet, og åbn
+`http://localhost:5173/admin`.
 
 ## Kør lokalt
 
