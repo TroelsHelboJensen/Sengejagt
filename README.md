@@ -7,22 +7,25 @@ Lille React-app til at holde styr på kandidater til en ny **kontinentalseng**.
 ## Features
 
 - Kort pr. sengemodel med pris + evt. tilbuds-note
-- Ikon-knapper til pris-/forhandlersider (PriceRunner, Prisjagt, forhandler, seng.dk, Erling C.)
-- Filtrering på mærke
-- Sortering på pris (senge uden kendt pris sorteres sidst)
+- Ikon-knapper til pris-/forhandlersider (PriceRunner, Prisjagt, forhandler)
+- Filtrering på mærke + sortering på pris (senge uden kendt pris sorteres sidst)
 - **Prishistorik pr. seng** — graf + nu/lavest/højest/antal målinger
+- **"Set & afprøvet"-sektion** — log over produkter vi har set/prøvet (billede, vurdering 1–10, note, hvor/hvornår)
+- **"🔄 Slå priser op"-knap** — henter aktuelle priser og viser dem (gemmer intet)
+- **Admin på `/admin`** (Decap CMS) til at redigere senge, "set & afprøvet" og krav
 - Beslutnings-/notespanel pr. seng (noter gemmes lokalt i browseren)
 
 ## Modeller på ønskelisten
 
-| Model    | Mærke      | Forhandler        |
-|----------|------------|-------------------|
-| LYA      | Temprakon  | Jysk              |
-| C300     | Dunlopillo | Jysk              |
-| Prestige | Jensen     | Delfin Sengecenter|
-| Supreme  | Jensen     | Delfin Sengecenter|
-| J5       | Jensen     | seng.dk           |
-| J6       | Jensen     | seng.dk           |
+Hver seng er sin egen fil i `src/data/beds/<id>.json`. **Jensen J5 = Prestige og
+J6 = Supreme** (samme seng, to navne) — derfor 4 modeller, ikke 6.
+
+| Model         | Mærke      | Forhandler            |
+|---------------|------------|-----------------------|
+| LYA           | Temprakon  | Jysk                  |
+| C300          | Dunlopillo | Jysk                  |
+| Prestige (J5) | Jensen     | time2sleep / seng.dk  |
+| Supreme (J6)  | Jensen     | time2sleep / seng.dk  |
 
 ## Priser og historik
 
