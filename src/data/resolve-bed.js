@@ -35,3 +35,14 @@ export function resolveBed(bed) {
 export function byOrder(a, b) {
   return (a.order ?? 999) - (b.order ?? 999)
 }
+
+// Rå seng-liste → de senge der skal VISES offentligt: skjulte (`hidden`) frasorteres,
+// resten får færdige links og sorteres. Delt af begge loaders (beds.js +
+// beds.node.mjs), så `hidden` håndhæves ét sted — også for /api/prices.
+// NB: admin (Decap) læser JSON-filerne direkte og viser stadig ALLE senge.
+export function toBedList(rawBeds) {
+  return rawBeds
+    .filter((bed) => !bed.hidden)
+    .map(resolveBed)
+    .sort(byOrder)
+}

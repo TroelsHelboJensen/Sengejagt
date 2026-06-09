@@ -4,15 +4,17 @@
 
 import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { resolveBed, byOrder } from './resolve-bed.js'
+import { toBedList } from './resolve-bed.js'
 
 const bedsDir = fileURLToPath(new URL('./beds/', import.meta.url))
 const requirementsPath = fileURLToPath(new URL('./requirements.json', import.meta.url))
 
 export const requirements = JSON.parse(readFileSync(requirementsPath, 'utf8'))
 
-export const beds = readdirSync(bedsDir)
-  .filter((name) => name.endsWith('.json'))
-  .map((name) => JSON.parse(readFileSync(bedsDir + name, 'utf8')))
-  .map(resolveBed)
-  .sort(byOrder)
+// Samme synligheds-filter som det offentlige site (toBedList frasorterer
+// skjulte senge), så /api/prices ikke lækker dem.
+export const beds = toBedList(
+  readdirSync(bedsDir)
+    .filter((name) => name.endsWith('.json'))
+    .map((name) => JSON.parse(readFileSync(bedsDir + name, 'utf8'))),
+)

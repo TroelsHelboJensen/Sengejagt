@@ -12,17 +12,14 @@
 //
 // NB: Jensen J5 = Prestige og J6 = Supreme (samme seng, to navne).
 
-import { resolveBed, byOrder } from './resolve-bed.js'
+import { toBedList } from './resolve-bed.js'
 import requirements from './requirements.json'
 
 export { requirements }
 
 const modules = import.meta.glob('./beds/*.json', { eager: true })
 
-// Senge med `hidden: true` er skjult fra det offentlige site (men beholdes i
-// admin). Resten vises, sorteret efter `order`.
-export const beds = Object.values(modules)
-  .map((module) => module.default ?? module)
-  .filter((bed) => !bed.hidden)
-  .map(resolveBed)
-  .sort(byOrder)
+// toBedList frasorterer skjulte senge, tilføjer links og sorterer.
+export const beds = toBedList(
+  Object.values(modules).map((module) => module.default ?? module),
+)

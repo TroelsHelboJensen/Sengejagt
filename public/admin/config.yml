@@ -38,8 +38,8 @@ collections:
     format: json
     slug: "{{fields.id}}"
     identifier_field: model
-    summary: "{{fields.brand}} {{fields.model}}"
-    sortable_fields: [order, model, brand, salePrice]
+    summary: "{{fields.brand}} {{fields.model}}{{fields.hidden | ternary(' — 🚫 skjult','')}}"
+    sortable_fields: [order, model, brand, salePrice, hidden]
     fields:
       - label: ID
         name: id
