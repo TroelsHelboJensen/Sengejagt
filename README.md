@@ -11,7 +11,6 @@ Lille React-app til at holde styr på kandidater til en ny **kontinentalseng**.
 - Filtrering på mærke + sortering på pris (senge uden kendt pris sorteres sidst)
 - **Prishistorik pr. seng** — graf + nu/lavest/højest/antal målinger
 - **"Set & afprøvet"-sektion** — log over produkter vi har set/prøvet (billede, vurdering 1–10, note, hvor/hvornår)
-- **"🔄 Slå priser op"-knap** — henter aktuelle priser og viser dem (gemmer intet)
 - **Admin på `/admin`** (Decap CMS) til at redigere senge, "set & afprøvet" og krav
 - **Skjul senge fra siden** via admin-feltet "Skjul fra siden" (sengen beholdes i admin)
 - Beslutnings-/notespanel pr. seng (noter gemmes lokalt i browseren)
@@ -41,15 +40,10 @@ Appen viser seneste kendte pris pr. seng og tegner en graf over historikken.
 For at opdatere: åbn sengen i admin (eller rediger filen) og tilføj en ny
 række i **Pris-historik** med dagens dato og prisen.
 
-**"Slå priser op"-knappen** på forsiden henter aktuelle priser fra kilderne
-(`/api/prices` → `lib/prices.js`) og **viser** dem, så du hurtigt kan slå op —
-men den gemmer intet; du indtaster selv tallene pr. seng. Knappen virker kun på
-det deployede site (Vercel-funktionen), ikke i lokal `npm run dev`.
-
 > **Hvorfor manuelt?** Automatisk scraping blev afprøvet men viste sig
 > upålidelig: Jysk blokerer bots, og seng.dk renderer priser client-side (SPA),
-> så et generisk udtræk rammer forkerte tal. Derfor er priser manuelle, og
-> opslags-knappen viser kun tal til inspiration frem for at gemme dem blindt.
+> så et generisk udtræk rammer forkerte tal. Derfor vedligeholdes priser
+> manuelt — typisk ud fra et link + screenshot (se "Tilføj en ny seng").
 
 ## Admin-side (Decap CMS)
 
@@ -59,9 +53,9 @@ admin-side på **`/admin`** (Decap CMS), der viser sengene som en liste med en
 "Ny Seng"-knap. Admin'en committer ændringerne til repoet, hvorefter Vercel
 automatisk genbygger — så en opdatering er live efter ~1 minut.
 
-Loaderne samler filerne: `src/data/beds.js` (browser, via Vites
-`import.meta.glob`) og `src/data/beds.node.mjs` (Node — bruges af `api/` — via
-`fs`). Begge genbruger pris-link-logikken i `src/data/resolve-bed.js`.
+Browser-loaderen `src/data/beds.js` (Vites `import.meta.glob`) samler filerne
+via `src/data/resolve-bed.js` (`toBedList`: frasorterer skjulte, bygger links,
+sorterer).
 
 ### Tilføj en ny seng (link + screenshot → Claude udfylder)
 

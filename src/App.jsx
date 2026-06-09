@@ -3,7 +3,6 @@ import { beds, requirements } from './data/beds.js'
 import { latestPrices, latestSnapshotDate } from './data/history.js'
 import BedCard from './components/BedCard.jsx'
 import SeenList from './components/SeenList.jsx'
-import PriceLookup from './components/PriceLookup.jsx'
 
 const ALL_BRANDS = 'Alle mærker'
 
@@ -84,8 +83,6 @@ export default function App() {
           Priser sidst opdateret: {updated ?? 'aldrig'}
         </span>
       </div>
-
-      <PriceLookup />
 
       <main className="app__grid">
         {visible.map((bed) => (
